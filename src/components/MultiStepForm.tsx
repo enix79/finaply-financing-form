@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Stepper, Button, Group } from "@mantine/core";
-import PersonalData from "./PersonalData";
+import { PersonalData, MonthlyEarnings } from "./formPages";
 
 export interface MultiStepFormProps {}
 
@@ -21,7 +21,7 @@ const MultiStepForm: React.FC<MultiStepFormProps> = () => {
           label="Monatliche Einnahmen"
           description="ohne Beleihungsobjekt"
         >
-          Step 2 content: Verify email
+          <MonthlyEarnings />
         </Stepper.Step>
         <Stepper.Step label="Vermögen" description="ohne Beleihungsobjekt">
           Step 3 content: Get full access
