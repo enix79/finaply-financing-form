@@ -1,42 +1,76 @@
 import { useState } from "react";
 import { Stepper, Button, Group } from "@mantine/core";
-import { PersonalData, MonthlyEarnings } from "./formPages";
+import {
+  PersonalData,
+  MonthlyEarnings,
+  AssetsForm,
+  MonthlyExpensesForm,
+  MonthlyLiabilitiesForm,
+  FutureLivingTypeForm,
+  MortgageObjectForm,
+} from "./formPages";
+import FinancingTypeSelector from "./FinancingTypeSelector";
 
 export interface MultiStepFormProps {}
 
 const MultiStepForm: React.FC<MultiStepFormProps> = () => {
   const [active, setActive] = useState<number>(0);
+  const isLastStep = active === 8;
   const nextStep = () =>
-    setActive((current) => (current < 3 ? current + 1 : current));
+    setActive((current) => (current < 8 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
 
   return (
     <>
       <Stepper active={active} onStepClick={setActive} breakpoint="sm">
-        <Stepper.Step label="Persönliche Daten">
+        <Stepper.Step>
+          <FinancingTypeSelector onSelect={nextStep} />
+        </Stepper.Step>
+
+        <Stepper.Step>
           <PersonalData />
         </Stepper.Step>
-        <Stepper.Step
-          label="Monatliche Einnahmen"
-          description="ohne Beleihungsobjekt"
-        >
+
+        <Stepper.Step>
           <MonthlyEarnings />
         </Stepper.Step>
-        <Stepper.Step label="Vermögen" description="ohne Beleihungsobjekt">
-          Step 3 content: Get full access
+
+        <Stepper.Step>
+          <AssetsForm />
         </Stepper.Step>
+
+        <Stepper.Step>
+          <MonthlyExpensesForm />
+        </Stepper.Step>
+
+        <Stepper.Step>
+          <MonthlyLiabilitiesForm />
+        </Stepper.Step>
+
+        <Stepper.Step>
+          <FutureLivingTypeForm />
+        </Stepper.Step>
+
+        <Stepper.Step>
+          <MortgageObjectForm />
+        </Stepper.Step>
+
         <Stepper.Completed>
           Completed, click back button to get to previous step
         </Stepper.Completed>
       </Stepper>
 
-      <Group position="center" mt="xl">
-        <Button variant="default" onClick={prevStep}>
-          Zurück
-        </Button>
-        <Button onClick={nextStep}>Weiter</Button>
-      </Group>
+      {active !== 0 && (
+        <Group position="center" mt="xl">
+          <Button variant="default" onClick={prevStep}>
+            Zurück
+          </Button>
+          <Button onClick={nextStep} disabled={isLastStep}>
+            Weiter
+          </Button>
+        </Group>
+      )}
     </>
   );
 };

@@ -2,9 +2,13 @@ import { Card, Center, SimpleGrid, Stack, Text, Title } from "@mantine/core";
 import { FC } from "react";
 import { CoinsIcon, HomeDollarIcon, HomeEditIcon, HomeIcon } from "./icons";
 
-export interface FinancingTypeSelectorProps {}
+export interface FinancingTypeSelectorProps {
+  onSelect: () => void;
+}
 
-const FinancingTypeSelector: FC<FinancingTypeSelectorProps> = () => {
+const FinancingTypeSelector: FC<FinancingTypeSelectorProps> = ({
+  onSelect,
+}) => {
   return (
     <>
       <Title order={2} my="lg">
@@ -23,6 +27,7 @@ const FinancingTypeSelector: FC<FinancingTypeSelectorProps> = () => {
               cursor: "pointer",
             },
           })}
+          onClick={onSelect}
         >
           <Stack justify="space-around" align="center">
             <HomeDollarIcon />
@@ -40,6 +45,7 @@ const FinancingTypeSelector: FC<FinancingTypeSelectorProps> = () => {
               cursor: "pointer",
             },
           })}
+          onClick={onSelect}
         >
           <Stack justify="space-around" align="center">
             <HomeIcon />
@@ -57,6 +63,7 @@ const FinancingTypeSelector: FC<FinancingTypeSelectorProps> = () => {
               cursor: "pointer",
             },
           })}
+          onClick={onSelect}
         >
           <Stack justify="space-around" align="center">
             <CoinsIcon />
@@ -74,6 +81,7 @@ const FinancingTypeSelector: FC<FinancingTypeSelectorProps> = () => {
               cursor: "pointer",
             },
           })}
+          onClick={onSelect}
         >
           <Stack justify="space-around" align="center">
             <HomeEditIcon />
