@@ -10,3 +10,4 @@ export { default as MortgageObjectForm } from "./MortgageObjectForm";
 export { default as PurchasePlanForm } from "./PurchasePlanForm";
 export { default as DebtRestructuringPlanForm } from "./DebtRestructuringPlanForm";
 export { default as FinancingPlanForm } from "./FinancingPlanForm";
+export { default as CommentForm } from "./CommentForm";
