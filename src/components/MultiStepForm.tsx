@@ -9,6 +9,7 @@ import {
   FutureLivingTypeForm,
   MortgageObjectForm,
   PurchasePlanForm,
+  DebtRestructuringPlanForm,
 } from "./formPages";
 import FinancingTypeSelector from "./FinancingTypeSelector";
 
@@ -16,9 +17,9 @@ export interface MultiStepFormProps {}
 
 const MultiStepForm: React.FC<MultiStepFormProps> = () => {
   const [active, setActive] = useState<number>(0);
-  const isLastStep = active === 9;
+  const isLastStep = active === 10;
   const nextStep = () =>
-    setActive((current) => (current < 9 ? current + 1 : current));
+    setActive((current) => (current < 10 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
 
@@ -59,6 +60,10 @@ const MultiStepForm: React.FC<MultiStepFormProps> = () => {
 
         <Stepper.Step>
           <PurchasePlanForm />
+        </Stepper.Step>
+
+        <Stepper.Step>
+          <DebtRestructuringPlanForm />
         </Stepper.Step>
 
         <Stepper.Completed>
