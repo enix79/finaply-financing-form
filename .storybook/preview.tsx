@@ -2,6 +2,8 @@ import React from "react";
 import { MantineProvider } from "@mantine/core";
 import type { Preview } from "@storybook/react";
 import { theme } from "../theme";
+import "dayjs/locale/de";
+import { DatesProvider } from "@mantine/dates";
 
 const preview: Preview = {
   parameters: {
@@ -25,4 +27,12 @@ const withMantineProvider = (Story: Function, context: any) => {
   );
 };
 
-export const decorators = [withMantineProvider];
+const withMantineDatesProvider = (Story: Function) => {
+  return (
+    <DatesProvider settings={{ locale: "de" }}>
+      <Story />;
+    </DatesProvider>
+  );
+};
+
+export const decorators = [withMantineProvider, withMantineDatesProvider];
